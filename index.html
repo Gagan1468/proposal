@@ -155,33 +155,14 @@ msg.innerHTML="That's okay ❤️ Thanks for being honest.";
 
 };
 
-yes.onclick = () => {
+yes.onclick=()=>{
 
-    confetti({
-        particleCount: 300,
-        spread: 120,
-        origin: { y: 0.6 }
-    });
+confetti({
+particleCount:300,
+spread:120,
+origin:{y:.6}
+});
 
-    msg.innerHTML = "🎉 Yay!! You made my day ❤️";
-
-    emailjs.send(
-        "service_z1ymdsx",
-        "template_i4ovtoo",
-        {
-            message: "She clicked YES ❤️",
-            time: new Date().toLocaleString(),
-            browser: navigator.userAgent
-        }
-    )
-    .then(() => {
-        console.log("Email Sent!");
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-
-};
 msg.innerHTML="🎉 Yay!! You made my day ❤️";
 
 for(let i=0;i<50;i++){
@@ -210,13 +191,6 @@ h.remove();
 
 };
 
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-emailjs.init({
-    publicKey: "EMnEQn1d8oIWHZKHV"
-});
 </script>
 
 </body>
