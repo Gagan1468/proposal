@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ A Question For You ❤️</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff4e50,#fc913a,#ff6fd8,#6a11cb);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+width:420px;
+padding:40px;
+border-radius:25px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,.25);
+color:white;
+position:relative;
+}
+
+h1{
+font-size:35px;
+margin-bottom:20px;
+}
+
+p{
+font-size:20px;
+margin-bottom:30px;
+}
+
+button{
+padding:14px 35px;
+font-size:20px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+transition:.3s;
+margin:10px;
+}
+
+#yes{
+background:#00d26a;
+color:white;
+}
+
+#yes:hover{
+transform:scale(1.1);
+}
+
+#no{
+background:#ff4d6d;
+color:white;
+position:relative;
+}
+
+#message{
+margin-top:25px;
+font-size:24px;
+font-weight:bold;
+}
+
+.heart{
+position:absolute;
+font-size:24px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+100%{
+transform:translateY(-120vh);
+opacity:1;
+}
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>💖 Hey! 💖</h1>
+
+<p>Will you be my girlfriend? ❤️</p>
+
+<button id="yes">YES 💖</button>
+<button id="no">NO 😅</button>
+
+<div id="message"></div>
+
+</div>
+
+<script>
+
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+const msg=document.getElementById("message");
+
+let tries=0;
+
+const texts=[
+"Are you sure? 🥺",
+"Think again 😂",
+"I'll respect your answer ❤️"
+];
+
+no.onclick=()=>{
+
+if(tries<2){
+
+no.style.position="absolute";
+no.style.left=Math.random()*300+"px";
+no.style.top=Math.random()*250+"px";
+
+msg.innerHTML=texts[tries];
+
+tries++;
+
+}else{
+
+msg.innerHTML="That's okay ❤️ Thanks for being honest.";
+
+}
+
+};
+
+yes.onclick=()=>{
+
+confetti({
+particleCount:300,
+spread:120,
+origin:{y:.6}
+});
+
+msg.innerHTML="🎉 Yay!! You made my day ❤️";
+
+for(let i=0;i<50;i++){
+
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(3+Math.random()*4)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.remove();
+},7000);
+
+}
+
+// TODO:
+// Call your backend here to send an email notification.
+// Example:
+// fetch("https://your-backend-url/send-email", {
+//   method: "POST"
+// });
+
+};
+
+</script>
+
+</body>
+</html>
